@@ -6,5 +6,5 @@ All you need is the country's ISO name. For example, Kenya is 'KEN'. It works wi
 
 To run this project:
    1. clone the directory
-   2. run python gadm_scraper.py --country KEN (You can replace KEN with the ISO code of your desired country)
+   2. run python gadm_scraper.py --country KEN (You can replace KEN with the ISO code of your desired country). The flag is optional. If you want to download the administrative levels for all the countries, just run python gadm_scraper.py
    3. Sit back and wait as the administrative levels are downloaded to the folder adminLevels and in the country name's folde, for example: adminLevels\Kenya\
