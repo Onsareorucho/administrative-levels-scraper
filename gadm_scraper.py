@@ -1,6 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 import os, json
+import argparse
+parser = argparse.ArgumentParser()
+
+parser.add_argument("--country","-C",help="ISO Code of Desired country")
+args = parser.parse_args()
 
 URL = "https://geodata.ucdavis.edu/gadm/gadm4.1/json/"
 
@@ -25,6 +30,10 @@ countries = {}
 
 for country_json_link in all_json_links:
     country_code = country_json_link.split("_")[1]
+    if args.country:
+     if country_code != args.country:
+         continue
+
     level = int(country_json_link.split("_")[2].split('.')[0])
     if country_code not in countries:
         countries[country_code] = {}
@@ -32,6 +41,9 @@ for country_json_link in all_json_links:
         countries[country_code][level] = country_json_link
 
 for country,levels in countries.items():
+    if args.country:
+     if country != args.country:
+         continue
      link =URL + countries[country][max(levels)]
      response = requests.get(link)
      json_content = response.json()
